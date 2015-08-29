@@ -59,3 +59,24 @@
       (is (= 123456 (fp 123456)))
       (is (= 12345678 (fp 12345678)))
       (is (= 0xffffffff (fp 0xffffffff))))))
+
+(deftest test-network-min-max
+  (testing "private IPv4 address spaces"
+    (let [min-max-formatted (comp (partial map format-address) network-min-max)
+         private-10 (min-max-formatted "10.0.0.0/8")
+         private-172 (min-max-formatted "172.16.0.0/12")
+         private-192 (min-max-formatted "192.168.0.0/16")]
+     (is (= "10.0.0.0" (first private-10)))
+     (is (= "10.255.255.255" (second private-10)))
+     (is (= "172.16.0.0" (first private-172)))
+     (is (= "172.31.255.255" (last private-172)))
+     (is (= "192.168.0.0" (first private-192)))
+     (is (= "192.168.255.255" (last private-192)))))
+
+  (testing "invalid network syntax"
+    (is (thrown? AssertionError (network-min-max nil)))
+    (is (thrown? IllegalArgumentException (network-min-max "0.0.0.0/-1")))
+    (is (thrown? IllegalArgumentException (network-min-max "0.0.0.0/33")))
+    (is (thrown? IllegalArgumentException (network-min-max "0.0.0.0/1/2")))
+    (is (thrown? IllegalArgumentException (network-min-max "10.0.0.0/255.0.0.0"))
+      "(Syntax not supported yet)")))
