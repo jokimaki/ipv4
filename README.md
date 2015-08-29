@@ -1,5 +1,7 @@
 # ipv4
 
+[![Build Status](https://travis-ci.org/jokimaki/ipv4.svg?branch=master)](https://travis-ci.org/jokimaki/ipv4)
+
 A Clojure library for working with IPv4 addresses.
 
 Supports [dot-decimal](https://en.wikipedia.org/wiki/Dot-decimal_notation) notation.
