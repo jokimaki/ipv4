@@ -1,4 +1,4 @@
-(defproject jokimaki/ipv4 "0.1.0-SNAPSHOT"
+(defproject jokimaki/ipv4 "0.1.0"
   :description "Library for working with IPv4 addresses"
   :url "https://github.com/jokimaki/ipv4"
   :license {:name "The MIT License"
