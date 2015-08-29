@@ -26,13 +26,13 @@
 
 (deftest test-format-address
   (testing "simple valid addresses"
-    (is (= "0.0.0.0") (format-address 0))
-    (is (= "0.0.0.1") (format-address 1))
-    (is (= "0.0.1.0") (format-address 0x100))
-    (is (= "0.1.0.0") (format-address 0x10000))
-    (is (= "1.0.0.0") (format-address 0x1000000))
-    (is (= "0.0.0.255") (format-address 0xff))
-    (is (= "255.255.255.255") (format-address 0xffffffff))
+    (is (= "0.0.0.0" (format-address 0)))
+    (is (= "0.0.0.1" (format-address 1)))
+    (is (= "0.0.1.0" (format-address 0x100)))
+    (is (= "0.1.0.0" (format-address 0x10000)))
+    (is (= "1.0.0.0" (format-address 0x1000000)))
+    (is (= "0.0.0.255" (format-address 0xff)))
+    (is (= "255.255.255.255" (format-address 0xffffffff)))
     (is (= "0.255.1.255" (format-address 0xff01ff))))
 
   (testing "invalid addresses"
