@@ -48,3 +48,7 @@
         max (bit-or net (first mask))]
     [min max]))
 
+(defn address-in-network? [^String address ^String network]
+  (let [ip (parse-address address)
+        [min max] (network-min-max network)]
+    (<= min ip max)))

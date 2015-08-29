@@ -80,3 +80,11 @@
     (is (thrown? IllegalArgumentException (network-min-max "0.0.0.0/1/2")))
     (is (thrown? IllegalArgumentException (network-min-max "10.0.0.0/255.0.0.0"))
       "(Syntax not supported yet)")))
+
+(deftest test-address-in-network
+  (is (address-in-network? "10.0.0.0" "10.0.0.0/8"))
+  (is (address-in-network? "10.0.0.1" "10.0.0.0/8"))
+  (is (address-in-network? "10.255.255.254" "10.0.0.0/8"))
+  (is (address-in-network? "10.255.255.255" "10.0.0.0/8"))
+  (is (not (address-in-network? "9.255.255.255" "10.0.0.0/8")))
+  (is (not (address-in-network? "11.0.0.0" "10.0.0.0/8"))))
